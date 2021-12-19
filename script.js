@@ -35,9 +35,45 @@ function passwordOptions() {
   return opptionsPassword
 }
 
+function random (arr) {
+var randomIndex = Math.floor(Math.random()*arr.length) 
+var randomElement = arr[randomIndex]
+       return randomElement
+}
 
+function generatePassword () {
+  var options = passwordOptions ()
+  var results = []
+  var charactersPossible = []
+  var charactersGaranteed = []
+if (options.wantSpecialCharacters) {
+  charactersPossible = charactersPossible.concat(specialCharacters)
+  charactersGaranteed.push(random(specialCharacters))
+}
+if (options.wantLowercaseCharcters) {
+  charactersPossible = charactersPossible.concat(lowercaseCharacters)
+  charactersGaranteed.push(random(lowercaseCharacters))
+}
+if (options.wantUppercaseCharcters) {
+  charactersPossible = charactersPossible.concat(uprercaseCharacters)
+  charactersGaranteed.push(random(uprercaseCharacters))
+}
+if (options.wantNumbersCharcters) {
+  charactersPossible = charactersPossible.concat(numbersCharacters)
+  charactersGaranteed.push(random(numbersCharacters))
+}
+for (let i = 0; i <options.length; i++) {
+  var characterPossible= random(charactersPossible)
+  results.push(characterPossible) 
+}
 
+for (let i = 0; i < charactersGaranteed.length; i++) {
+  results[i]=charactersGaranteed[i]
+  
+}
+return results.join("")
 
+}
 
 var generateBtn = document.querySelector("#generate");
 
